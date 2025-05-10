@@ -4,9 +4,7 @@ Funcionalidade: Configurar produto
 
     Cenário: Configurar produto com cor, tamanho e quantidade
         Dado que o usuário está na página de um produto
-        Quando ele selecionar uma cor disponível
-        E selecionar um tamanho
-        E definir a quantidade desejada
+        Quando selecionar uma <cor>, <tamanho> e <quantidade>
         Então as opções selecionadas devem ser exibidas corretamente
         E a quantidade deve ser igual ou maior que 1
 
@@ -19,13 +17,14 @@ Funcionalidade: Configurar produto
     Cenário com Esquema
 
     Esquema do Cenário: Permitir ou bloquear finalização da compra com base na quantidade
-        Dado que o usuário adiciona <quantidade> unidades de um produto no carrinho
+        Quando o usuário adiciona <quantidade> unidades de um produto no carrinho
         Então o sistema deve <resultado>
 
-    Cenário com Tabela
+    Cenário com Tabela:
 
-        | quantidade     | resultado                                                          |
-        | Q = 1          | concluir a venda de produto                                        |
-        | Q = 5          | concluir a venda de produto                                        |
-        | Q = 10         | concluir a venda de produto                                        |
-        | Q > 10         | exibir mensagem de limite excedido debaixo do campo de quantidade  |
+        | quantidade | resultado                                 |
+        | 1          | concluir a venda de produto               |
+        | 5          | concluir a venda de produto               |
+        | 10         | concluir a venda de produto               |
+        | 11         | exibir mensagem de limite excedido        |
+

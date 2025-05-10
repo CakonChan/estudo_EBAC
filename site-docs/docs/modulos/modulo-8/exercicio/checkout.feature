@@ -1,44 +1,40 @@
-Funcionalidade: Checkout (Cadastro de nome de cliente e endereco e Finalizar Pedido)
+Funcionalidade: Checkout (cadastro de cliente e endereço)
 
-    Contexto
-        Cliente Cadastrado da loja EBAC e vai preencher dados do endereco para realizar compra ou seja proxima etapa de forma de pagamento.
+    Contexto:
+        Dado que o cliente está na página de checkout da loja EBAC
 
-    Cenário: Prencher dados corretos nos campos que possui asteriscos
-        Dado que cliente preencher os dados corretos nos campos obrigatórios que possui asteriscos
-        E clicar botão "Finalizar Compra"
-        Então será redirecionado a pagina de forma de pagamento (proxima etapa).
+    Cenário: Finalizar compra com todos os dados obrigatórios preenchidos
+        Quando preencher todos os campos obrigatórios marcados com asterisco
+        E clicar no botão "Finalizar compra"
+        Então o sistema deverá direcionar à página com as formas de pagamento
 
-    Cenário: preencher dado incorreto no(s) campo(s) que possui asteriscos
-        Dado que cliente preenche dado num campo que possui asteriscos
-        Então receberá aviso com texto "obrigatório preencher neste campo" debaixo do campo obrigatório que possui asteriscos.
+    Cenário: Exibir erro ao deixar campos obrigatórios vazios
+        Quando não preencher um ou mais campos obrigatórios
+        E clicar no botão "Finalizar compra"
+        Então o sistema deverá exibir a mensagem "Campo obrigatório" abaixo de cada campo não preenchido
 
-    Cenário: Preencher e-mail incorreto ou fora de formatacao de email
-        Dado que cliente preencher e-mail sem @
-        Então receberá aviso com texto  "obrigatório preencher neste campo" debaixo do campo obrigatório que possui asteriscos.
+    Cenário: Exibir erro ao preencher e-mail sem "@"
+        Quando preencher o campo de e-mail com "clienteemail.com"
+        E clicar no botão "Finalizar compra"
+        Então o sistema deverá exibir a mensagem "Campo obrigatório" abaixo do campo de e-mail
 
-    Cenário: Preencher e-mail incorreta ou fora de formatacao de e-mail sem texto depois do @
-        Dado que cliente preencher e-mail sem texto depois do @
-        E texto exemplo preenchido como "test_email@"
-        Então receberá aviso com texto  "obrigatório preencher neste campo" debaixo do campo obrigatório que possui asteriscos.
-    
-    Cenário: Preencher dados vazios no(s) campo(s)
-        Dado que cliente que nao preencher no campo obrigatório
-        Então receberá aviso com texto  "obrigatório preencher neste campo" debaixo do campo obrigatório que possui asteriscos.
+    Cenário: Exibir erro ao preencher e-mail incompleto (sem domínio)
+        Quando preencher o campo de e-mail com "cliente@"
+        E clicar no botão "Finalizar compra"
+        Então o sistema deverá exibir a mensagem "Campo obrigatório" abaixo do campo de e-mail
 
-    Esquema do Cenário: Preencher <dados> no campo de cadastro na pagina de checkout
-        Dado que o cliente preenche <dados> nos campos obrigatorios
-        Então realiza a compra
+    Esquema do Cenário: Validação de campos obrigatórios no checkout
+    Quando preencher os campos <nome>, <sobrenome>, <país>, <endereço>, <cidade>, <cep>, <telefone> e <email>
+    E clicar no botão "Finalizar compra"
+    Então o sistema deverá apresentar o seguinte resultado: "<resultado>"
 
-    Cenário com Tabela
-    
-        | dados                                                                                             | resultado                                     |
-        | nome | sobrenome | país | endereço | cidade | CEP     | telefone | endereco de e-mail             |                                               |
-        | sim  | sim       | sim  | sim      | sim    | sim     | sim      | válido                         | finaliza compra                               |
-        | vazio| sim       | sim  | sim      | sim    | sim     | sim      | válido                         | exibir erro no campo 'nome'                   |
-        | sim  | sim       | sim  | sim      | sim    | sim     | sim      | sem-arroba                     | exibir erro no campo 'email'                  |
-        | sim  | sim       | sim  | sim      | sim    | sim     | sim      | vazio                          | exibir erro no campo 'email'                  |
-        | sim  | sim       | sim  | vazio    | sim    | sim     | sim      | válido                         | exibir erro no campo 'endereço'               |
-        | sim  | sim       | sim  | sim      | vazio  | sim     | sim      | válido                         | exibir erro no campo 'cidade'                 |
-        | sim  | sim       | sim  | sim      | sim    | vazio   | sim      | válido                         | exibir erro no campo 'CEP'                    |
-        | sim  | sim       | sim  | sim      | sim    | sim     | vazio    | válido                         | exibir erro no campo 'telefone'               |
-        | sim  | sim       | sim  | sim      | sim    | sim     | sim      | vazio                          | exibir erro no campo 'endereco de e-mail '    |
+    Exemplos:
+        | nome  | sobrenome | país | endereço | cidade | cep   | telefone | email        | resultado                             |
+        | sim   | sim       | sim  | sim      | sim    | sim   | sim      | válido       | redirecionar para formas de pagamento |
+        |       | sim       | sim  | sim      | sim    | sim   | sim      | válido       | exibir erro no campo 'nome'           |
+        | sim   | sim       | sim  | sim      | sim    | sim   | sim      | sem-arroba   | exibir erro no campo 'email'          |
+        | sim   | sim       | sim  | sim      | sim    | sim   | sim      | vazio        | exibir erro no campo 'email'          |
+        | sim   | sim       | sim  | vazio    | sim    | sim   | sim      | válido       | exibir erro no campo 'endereço'       |
+        | sim   | sim       | sim  | sim      | vazio  | sim   | sim      | válido       | exibir erro no campo 'cidade'         |
+        | sim   | sim       | sim  | sim      | sim    | vazio | sim      | válido       | exibir erro no campo 'cep'            |
+        | sim   | sim       | sim  | sim      | sim    | sim   | vazio    | válido       | exibir erro no campo 'telefone'       |
