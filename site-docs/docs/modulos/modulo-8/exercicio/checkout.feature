@@ -29,11 +29,13 @@ Funcionalidade: Checkout (cadastro de cliente e endereço)
     Então o sistema deve exibir a mensagem <mensagem>
 
     Exemplos:
-        | nome   | sobrenome | país    | endereço               | cidade           | cep       | telefone     | email                   | mensagem                                       |
-        |        | Porto     | Brasil  | Avenida Antonio        | Feira de Santana | 401010110 | 7512341234   | caioporto@hotmail.com   | Campo obrigatório no campo 'nome'              |
-        | Caio   | Porto     | Brasil  | Avenida Antonio        | Feira de Santana | 401010110 | 7512341234   | caioemail.com           | Campo obrigatório no campo 'email'             |
-        | Caio   | Porto     | Brasil  | Avenida Antonio        | Feira de Santana | 401010110 | 7512341234   |                         | Campo obrigatório no campo 'email'             |
-        | Caio   | Porto     | Brasil  |                        | Feira de Santana | 401010110 | 7512341234   | caioporto@hotmail.com   | Campo obrigatório no campo 'endereço'          |
-        | Caio   | Porto     | Brasil  | Avenida Antonio        |                  | 401010110 | 7512341234   | caioporto@hotmail.com   | Campo obrigatório no campo 'cidade'            |
-        | Caio   | Porto     | Brasil  | Avenida Antonio        | Feira de Santana |           | 7512341234   | caioporto@hotmail.com   | Campo obrigatório no campo 'cep'               |
-        | Caio   | Porto     | Brasil  | Avenida Antonio        | Feira de Santana | 401010110 |              | caioporto@hotmail.com   | Campo obrigatório no campo 'telefone'          |
+        | nome   | sobrenome | país    | endereço               | cidade           | cep       | telefone      | email                   | mensagem                                       |
+        |        | Porto     | Brasil  | Avenida Antonio        | Feira de Santana | 401010110 | 7512341234    | caioporto@hotmail.com   | Campo obrigatório no campo 'nome'              |
+        | Caio   | Porto     | Brasil  | Avenida Antonio        | Feira de Santana | 401010110 | 7512341234    | caioemail.com           | Formato de e-mail inválido                     |
+        | Caio   | Porto     | Brasil  | Avenida Antonio        | Feira de Santana | 401010110 | 7512341234    |                         | Campo obrigatório no campo 'email'             |
+        | Caio   | Porto     | Brasil  |                        | Feira de Santana | 401010110 | 7512341234    | caioporto@hotmail.com   | Campo obrigatório no campo 'endereço'          |
+        | Caio   | Porto     | Brasil  | Avenida Antonio        |                  | 401010110 | 7512341234    | caioporto@hotmail.com   | Campo obrigatório no campo 'cidade'            |
+        | Caio   | Porto     | Brasil  | Avenida Antonio        | Feira de Santana |           | 7512341234    | caioporto@hotmail.com   | Campo obrigatório no campo 'cep'               |
+        | Caio   | Porto     | Brasil  | Avenida Antonio        | Feira de Santana | textoCEP  | 7512341234    | caioporto@hotmail.com   | Formato de cep inválido                        |
+        | Caio   | Porto     | Brasil  | Avenida Antonio        | Feira de Santana | 401010110 |               | caioporto@hotmail.com   | Campo obrigatório no campo 'telefone'          |
+        | Caio   | Porto     | Brasil  | Avenida Antonio        | Feira de Santana | 401010110 | textoTelefone | caioporto@hotmail.com   | Formato de telefone inválido                   |
