@@ -1,0 +1,430 @@
+{
+	"info": {
+		"_postman_id": "8407601a-cb2d-47e1-b995-dfe1a959bfc2",
+		"name": "Atividade",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47165336",
+		"_collection_link": "https://caioferrazporto-9635422.postman.co/workspace/Cakon's-Workspace~e6c82af1-2e67-42cf-8a63-b6e546279438/collection/47165336-8407601a-cb2d-47e1-b995-dfe1a959bfc2?action=share&source=collection_link&creator=47165336"
+	},
+	"item": [
+		{
+			"name": "Listar Usuarios",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 200 - Criado com sucesso\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Deve conter a lista de usuários\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.usuarios).to.be.an(\"array\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}usuarios",
+					"host": [
+						"{{url}}usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 201 - Usuário criado com sucesso\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Deve conter mensagem de sucesso\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.include(\"Cadastro realizado com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Ronaldo Jr\",\r\n  \"email\": \"teste22@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}usuarios",
+					"host": [
+						"{{url}}usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Cadastrar Usuario - Existente Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 400 - Usuário criado com sucesso\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Deve conter mensagem de falha\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.include(\"Este email já está sendo usado\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Fulano da Silva\",\r\n  \"email\": \"fulano@qa.com\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}usuarios",
+					"host": [
+						"{{url}}usuarios"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Usuario Por ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status 200 - Usuário criado com sucesso\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Usuário deve conter nome e email\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData).to.have.property(\"nome\");\r",
+							"    pm.expect(jsonData).to.have.property(\"email\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}usuarios/{{idUsuario}}",
+					"host": [
+						"{{url}}usuarios"
+					],
+					"path": [
+						"{{idUsuario}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Usuario Por ID - Nao Encontrado",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Usuário não encontrado - Status 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Mensagem de erro correta\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.include(\"Usuário não encontrado\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}usuarios/{{idUsuarioInexistente}}",
+					"host": [
+						"{{url}}usuarios"
+					],
+					"path": [
+						"{{idUsuarioInexistente}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Excluido Usuário Com Sucesso - Status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem com sucesso\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.include(\"Registro excluído com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}usuarios/r6sbCqwTBLwatbxw",
+					"host": [
+						"{{url}}usuarios"
+					],
+					"path": [
+						"r6sbCqwTBLwatbxw"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Excluir Usuario - Excluir Inexistente",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Excluido Usuário Com Sucesso - Status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem com sucesso\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.include(\"Nenhum registro excluído\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}usuarios/xVGS2KK6Y4A6vFwm",
+					"host": [
+						"{{url}}usuarios"
+					],
+					"path": [
+						"xVGS2KK6Y4A6vFwm"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Editado Usuário Com Sucesso - Status 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem com sucesso\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.include(\"Registro alterado com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Ronaldo da Silva\",\r\n  \"email\": \"teste2025@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}usuarios/GlF55zK5yJ4RNJSy",
+					"host": [
+						"{{url}}usuarios"
+					],
+					"path": [
+						"GlF55zK5yJ4RNJSy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Usuario - Novo Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Criado Usuário Com Sucesso - Status 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem com sucesso\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.include(\"Cadastro realizado com sucesso\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Ronaldinho Lendario\",\r\n  \"email\": \"teste000Lenda@qa.com.br\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}usuarios/jogfODIlXsqxOOO4",
+					"host": [
+						"{{url}}usuarios"
+					],
+					"path": [
+						"jogfODIlXsqxOOO4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Editar Usuario - Email Exisnte Outro Usuario",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Alterar EMail Existente de Outro Usuário - Status 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validar mensagem com sucesso\", function () {\r",
+							"    const jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.message).to.include(\"Este email já está sendo usado\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nome\": \"Ronaldinho Junior\",\r\n  \"email\": \"fulano@qa.com\",\r\n  \"password\": \"teste\",\r\n  \"administrador\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}usuarios/jogfODIlXsqxNFS2",
+					"host": [
+						"{{url}}usuarios"
+					],
+					"path": [
+						"jogfODIlXsqxNFS2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
