@@ -1,3 +1,12 @@
+---
+id: testes-interface-usuario
+title: Introdução aos Testes de UI
+slug: /introducao-aos-testes-de-ui
+sidebar_label: Introdução aos Testes de UI
+tags:
+- ci
+---
+
 # Introdução aos Testes de UI
 
 Testes de UI (User Interface) visam validar se a interface de um aplicativo está funcionando corretamente do ponto de vista visual e funcional. Eles podem ser feitos manualmente ou de forma automatizada.
@@ -39,7 +48,6 @@ Verifica se os elementos visuais (menus, botões, ícones) funcionam conforme o 
 
 Baseia-se em princípios de usabilidade extraídos da experiência prática. É um processo de revisão baseado em regras estabelecidas.
 
-# As 10 Heurísticas de Nielsen e Molich
 
 As heurísticas são princípios amplamente usados para avaliar a usabilidade de interfaces. Abaixo estão as 10 regras com explicações e exemplos práticos:
 

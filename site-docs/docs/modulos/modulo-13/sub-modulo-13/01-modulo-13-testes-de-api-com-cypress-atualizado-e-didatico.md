@@ -1,3 +1,14 @@
+---
+id: api
+title: Módulo 13 – Testes de API com Cypress (Atualizado e Didático)
+slug: /modulo-13-testes-de-api-com-cypress-atualizado-e-didatico
+sidebar_label: Módulo 13 – Testes de API com Cypress (Atualizado e Didático)
+tags:
+- cd
+- ci
+- cypress
+---
+
 # Módulo 13 – Testes de API com Cypress (Atualizado e Didático)
 
 ## O que é uma API?

@@ -1,3 +1,15 @@
+---
+id: ui-tests
+title: Módulo 11 – Automação de Testes com Cypress
+slug: /modulo-11-automacao-de-testes-com-cypress
+sidebar_label: Módulo 11 – Automação de Testes com Cypress
+tags:
+- ci
+- cypress
+- git
+- node
+---
+
 # Módulo 11 – Automação de Testes com Cypress
 
 ## Por que usar Cypress?

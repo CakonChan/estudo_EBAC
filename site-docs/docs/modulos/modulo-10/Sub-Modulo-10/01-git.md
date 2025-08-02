@@ -1,3 +1,18 @@
+---
+id: git
+title: Git
+slug: /git
+sidebar_label: Git
+tags:
+- ci
+- git
+- github
+- node
+- qa
+---
+
+# Git
+
 ## **Resumo do Módulo 10 – GIT**
 
 ### O que é Git?

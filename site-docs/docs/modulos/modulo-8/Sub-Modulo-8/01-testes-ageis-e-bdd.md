@@ -1,3 +1,15 @@
+---
+id: tecnicas-testes-agil
+title: Testes Ágeis e BDD
+slug: /testes-ageis-e-bdd
+sidebar_label: Testes Ágeis e BDD
+tags:
+- ci
+- cypress
+- java
+- qa
+---
+
 # Testes Ágeis e BDD
 
 ## Práticas Ágeis
